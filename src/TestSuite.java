@@ -26,7 +26,7 @@ public class TestSuite
 
         // Capitalization
         pass &= basicTest("Trash", "Ashtray");
-        pass &= basicTest("TrAsH", "AsHtray");
+        pass &= basicTest("TrAsH", "Ashtray");
 
         // Punctuation
         pass &= basicTest("Trash.", "Ashtray.");

@@ -90,7 +90,40 @@ public class Book
     }
 
     void writeToFile()
-    {
-        // Add code here to write the contents of the book to a file.
+{
+    if (text.isEmpty()) {
+        System.out.println("No content to write to file.");
+        return;
     }
+
+    if (title == null || title.trim().isEmpty()) {
+        System.out.println("Title is missing. Cannot create file.");
+        return;
+    }
+
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(title + ".txt", true))) {
+        System.out.println("Writing to file: " + title + ".txt");
+        for (int i = 0; i < text.size(); i++) {
+            writer.write(text.get(i));
+            writer.newLine();
+        }
+        System.out.println("File written successfully.");
+    } catch (IOException ex) {
+        System.out.println("Error writing to file: " + ex.getMessage());
+        ex.printStackTrace();
+    }
+}
+    public void writeToFile(String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (int i = 0; i < getLineCount(); i++) {
+                writer.write(getLine(i)); // Write each line to the file
+                writer.newLine();        // Add a new line
+            }
+            System.out.println("Book content written to file: " + fileName);
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
+        }
+    }
+    
+    
 }
